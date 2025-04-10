@@ -3,10 +3,15 @@ const cors= require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/User')
+const productRoutes = require('./routes/Productroutes');
 
 const server=express();
 server.use(cors());
 server.use(bodyParser.json());
+
+
+server.use('/Product', productRoutes);
+
 
 mongoose.connect('mongodb+srv://Ishwari:Ishwari%402004@cluster0.aql11yz.mongodb.net/').then(()=>console.log("database connected!!")).catch(()=>console.log(err))
 
@@ -58,6 +63,8 @@ server.post('/login',async(req,res)=>{
         })
     }
 })
+
+
 
 server.listen(8055,()=>{
     console.log('server started at port 8055')
